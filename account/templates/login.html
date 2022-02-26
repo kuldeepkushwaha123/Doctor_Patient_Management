@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container col-md-2">
+    <h3 class="text-center bg-secondary p-2 text-light border rounded">Login here</h3>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for f in form %}
+        {{f.label}}<br>
+        {{f}}<br>
+        {% endfor %}
+        <input type="submit" class="btn mt-2 btn-success" value="Login">
+    </form>
+</div>
+{% endblock body %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container col-md-4">
+    <h3 class="text-center bg-secondary p-2 m-2 text-light border rounded">Register here</h3>
+    <h1>
+        {% for field, errors in form.errors.items %}
+        {{field}}
+        {{errors}}
+        {% endfor %}
+    </h1>
+    <form action="" method="POST" autocomplete="off" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for f in form %}
+        {{f.label}}<br>
+        {{f}}<br>
+        {% endfor %}
+        <input type="submit" class="btn btn-success" value="Sign Up">
+    </form>
+</div>
+{% endblock body %}

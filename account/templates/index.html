@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock title %}
+{% block body %}
+
+<div class="m-2 table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">S No</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Level</th>
+                <th scope="col">Address</th>
+                <th scope="col">Profile Picture</th>
+                <th colspan="2">Action </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in data %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}.</th>
+                <td>{{u.first_name}}</td>
+                <td>{{u.last_name}}</td>
+                <td>{{u.username}}</td>
+                <td>{{u.email}}</td>
+                <td>{{u.level}}</td>
+                <td>{{u.address}}</td>
+                <td>    <img src="static/{{u.profile_picture}}" alt="loading!" class="rounded-circle" height="50px" width="50px"> 
+                    </td>
+                <td>
+                    <form action="update-user" method="GET">
+                        {% csrf_token %}
+                        <input type="hidden" name="user_id" value="{{u.pk}}">
+                        <input type="submit" class="btn btn-sm btn-info text-light" value="Edit">
+                    </form>
+                </td>
+                <td>
+                    <a id="delete_btn" onclick="alert('{{u.first_name}} has deleted.');" class="btn btn-danger text-light mx-2 btn-sm" href="/delete/{{u.pk}}">Delete</a> 
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock body %}

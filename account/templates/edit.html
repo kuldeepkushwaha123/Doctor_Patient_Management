@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Update User{% endblock title %}
+{% block body %}
+<div class="container col-md-2">
+    <h3 class="text-center bg-secondary p-2 text-light border rounded">Login here</h3>
+   
+    <form action="" method="POST"  enctype="multipart/form-data">
+        {% csrf_token %} 
+        {% for f in form %}
+        {{f.label}}<br>
+        {{f}}<br>
+        {% endfor %}
+        <input type="submit" class="btn mt-2 btn-success" value="Update">
+    </form>
+</div>
+{% endblock body %}
